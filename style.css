@@ -1,0 +1,22 @@
+body{
+    background-color: whitesmoke;
+}
+
+#caja1{
+    width: 400px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: lightskyblue;
+    text-align: left;
+    border-radius: 25px;
+}
+
+#caja2{
+    text-align: center;
+}
+
+.completed {
+    text-decoration: line-through;
+  }
+

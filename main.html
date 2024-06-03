@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css"> 
+  <title>DBP</title>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#new-task').onsubmit = (event) => {
+        event.preventDefault();
+
+        const cb = document.createElement("INPUT");
+        cb.setAttribute("type", "checkbox");
+
+        const li = document.createElement('li');
+        li.appendChild(cb);
+        li.innerHTML += document.querySelector('#task').value;
+
+        document.querySelector('#tasks').append(li);
+        document.querySelector('#task').value = '';
+
+        cb.addEventListener('change', function() {
+          toggleTask.call(this);
+        });
+      };
+
+      document.querySelector('#complete-all').onclick = () => {
+        const checkboxes = document.querySelectorAll('#tasks input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = true;
+          toggleTask.call(checkbox);
+        });
+      };
+
+      function toggleTask() {
+        const listItem = this.parentNode;
+        if (this.checked) {
+          listItem.classList.add('completed');
+        } else {
+          listItem.classList.remove('completed');
+        }
+      }
+    });
+  </script>
+</head>
+<body>
+  <p>Computer Science</p>
+  <div id="caja1">
+    <div id="caja2">
+      <h1>Tasks</h1>
+      <form id="new-task">
+        <input id="task" autocomplete="off" autofocus placeholder="New Task" type="text">
+        <input type="submit">
+      </form>
+      <button id="complete-all">Complete All</button>
+    </div>
+    <ol id="tasks">
+    </ol>
+  </div>
+</body>
+</html>
