@@ -9,17 +9,19 @@
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('#new-task').onsubmit = (event) => {
         event.preventDefault();
-
         const cb = document.createElement("INPUT");
         cb.setAttribute("type", "checkbox");
-
         const li = document.createElement('li');
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Borrar';
+        deleteButton.addEventListener('click', () => {
+          li.remove();
+        });
         li.appendChild(cb);
         li.innerHTML += document.querySelector('#task').value;
-
+        li.appendChild(deleteButton);
         document.querySelector('#tasks').append(li);
         document.querySelector('#task').value = '';
-
         cb.addEventListener('change', function() {
           toggleTask.call(this);
         });
